@@ -1,8 +1,8 @@
 # Vaadin MQTT Dashboard sample for Bluemix
 
-There are several dashboard gauge available
+There are several dashboard displays available
  * round gauge with text value 
- * vertical bar gauge 
+ * vertical bar display  
  * sparkline for history data
  * polar display for directional data
  * list display for text messages
