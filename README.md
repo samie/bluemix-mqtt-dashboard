@@ -1,14 +1,24 @@
-# mqtt-dashboard
-MQTT Dashboard sample for Bluemix
+# Vaadin MQTT Dashboard sample for Bluemix
 
-There are several dashboard gauge available
- * round gauge with value 
- * vertical bar gauge 
+> **Update 2015-03-10**
+> 
+> [There is a ongoing programming challenge](https://vaadin.com/challenge) for IBM Bluemix to build cloud applications with Vaadin. If your are building something using the [IoT Foundation](https://internetofthings.ibmcloud.com/), you can [fork this app](https://github.com/samie/bluemix-mqtt-dashboard/fork) to quickly get a IoT dashboard for your own app.
+
+
+There are several  displays for [MQTT](http://mqtt.org/) based [Bluemix IoT](https://internetofthings.ibmcloud.com/) dashboards:
+ * round gauge with text value 
+ * vertical bar display  
  * sparkline for history data
  * polar display for directional data
  * list display for text messages
 
-By default the application shows drone altitude, message log and slider to set drone altitude.
+By default the application shows drone altitude, message log and slider to set the drone altitude.
+
+![Screenshot](/drone-altitude-dashboard.png?raw=true "Drone control")
+
+You can find test it out live here: [mqtt-dashboard.mybluemix.net/drone](http://mqtt-dashboard.mybluemix.net/drone)
+
+## Get the source and compile
 
 To compile the the application locally, use:
 
@@ -16,26 +26,33 @@ To compile the the application locally, use:
      cd bluemix-mqtt-dashboard
      mvn install
 
-To connect the application to Bluemix IoT service you need to [sign up for IoT Foundation](https://www-968.ibm.com/marketplace/cloud/buy-internet-of-things-foundation/us/en-us)
-and configure the application. You can find the necessary configuration in the [DroneUI.java](src/main/java/org/vaadin/se/bluemix/DroneUI.java)
+_NOTE: the application does not work out-of-the-box and you need to configure the IoT foundation first._ 
 
-    // Sending client
-    String MQTT_TX_CLIENT_ID = "d:kwxdxh:<appname>:<username>";
-    String MQTT_TX_USER_NAME = "use-token-auth";
-    String MQTT_TX_PASSWORD = "<sender password>";
+## Setting up IoT foundation for messaging 
 
-    // Receiving client
-    String MQTT_RX_CLIENT_ID = "a:kwxdxh:";
-    String MQTT_RX_USER_NAME = "<receiver username>";
-    String MQTT_RX_PASSWORD = "<receiver password>";
+First you need to [setup the The IBM Internet of Things service](https://www.ng.bluemix.net/docs/#services/IoT/index.html#gettingstartedtemplate)
+in your Bluemix dashboard and configure the application. 
+![Screenshot](/setup-iot-service.png?raw=true "Setup IoT in Bluemix")
 
-These must be set in order the dashboard to connect to messaging service. Note that different client id is needed for every connecting client.
+You can find the application configuration in the [iot-foundation.properties](src/main/resources/iot-foundation.properties). Copy the required configuration data from the dashboard "Devices" and "API keys" tabs.
+
+Note that, if you add more displays in your code, a different client id is needed for every connecting client.
+
+## Running the app
 
 To run the application locally and open browser:
 
      mvn jetty:run
      open http://localhost:8080/drone
 
-Deploy to Bluemix:
+Deploy to Bluemix using CloudFoundry commandline tool:
 
-     cf push <your-app-name> -p target/mqtt-dashboard-1.0-SNAPSHOT.war
+     cf push <your-app-name> -p target/bluemix-mqtt-dashboard-1.0-SNAPSHOT.war
+
+
+And your application is online at &lt;your-app-name&gt;.mybluemix.net/drone
+
+
+
+----
+_Disclaimer: This source code is provided as a sample only. The application is provided "as-is," without any warranty. In no event shall the author be held liable for any costs or damages arising from the use of the software._
