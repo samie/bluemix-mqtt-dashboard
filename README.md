@@ -1,10 +1,5 @@
 # Vaadin MQTT Dashboard sample for Bluemix
 
-> **Update 2015-03-10**
-> 
-> [There is a ongoing programming challenge](https://vaadin.com/challenge) for IBM Bluemix to build cloud applications with Vaadin. If your are building something using the [IoT Foundation](https://internetofthings.ibmcloud.com/), you can [fork this app](https://github.com/samie/bluemix-mqtt-dashboard/fork) to quickly get a IoT dashboard for your own app.
-
-
 There are several  displays for [MQTT](http://mqtt.org/) based [Bluemix IoT](https://internetofthings.ibmcloud.com/) dashboards:
  * round gauge with text value 
  * vertical bar display  
